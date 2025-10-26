@@ -1,6 +1,8 @@
 package com.julianbetov.automatedaudit.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
 import lombok.*;
 
 import java.util.List;
@@ -18,7 +20,12 @@ public class Form {
     @Column(name = "id", updatable = false)
     private Long id;
 
-    @OneToMany(mappedBy = "form", cascade = CascadeType.ALL, orphanRemoval = true)
+    @PositiveOrZero
+    @Column(nullable = false, updatable = false)
+    private int questionCount;
+
+    @NotNull
+    @OneToMany(mappedBy = "form", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Registry> registries;
 
 }

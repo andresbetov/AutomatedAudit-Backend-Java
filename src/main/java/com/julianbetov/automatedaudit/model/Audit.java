@@ -2,6 +2,7 @@ package com.julianbetov.automatedaudit.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -29,15 +30,26 @@ public class Audit {
     @Column(nullable = false)
     private String company;
 
-    @NotBlank
     @Column(nullable = false)
     private List<String> departments;
 
-    @Column(nullable = false)
-    private LocalDateTime date;
+    @NotNull
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime createdAt;
 
-    @OneToOne(optional = false, cascade = CascadeType.ALL)
+    @OneToOne(optional = false, fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "form_id", nullable = false)
     private Form form;
 
+    @Override
+    public String toString() {
+        return "Audit{" +
+            "id=" + id +
+            ", referenceCode='" + referenceCode + '\'' +
+            ", company='" + company + '\'' +
+            ", departments=" + departments +
+            ", createdAt=" + createdAt +
+            ", form=" + form +
+            '}';
+    }
 }

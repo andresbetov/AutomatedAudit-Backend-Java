@@ -1,5 +1,6 @@
 package com.julianbetov.automatedaudit.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -40,6 +41,10 @@ public class Audit {
     @OneToOne(optional = false, fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "form_id", nullable = false)
     private Form form;
+
+    @OneToOne(mappedBy = "audit", cascade = CascadeType.ALL)
+    @JsonManagedReference // Add this annotation
+    private Files files;
 
     @Override
     public String toString() {

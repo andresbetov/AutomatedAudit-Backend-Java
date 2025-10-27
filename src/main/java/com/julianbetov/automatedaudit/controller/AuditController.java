@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @RestController
 @RequestMapping(value = "audit", produces = MediaType.APPLICATION_JSON_VALUE)
+@CrossOrigin(origins = "*")
 @RequiredArgsConstructor
 public class AuditController {
 

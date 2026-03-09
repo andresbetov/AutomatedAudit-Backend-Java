@@ -12,7 +12,8 @@ public enum ErrorCode {
     RESOURCE_CONFLICT(1003, "RESOURCE_CONFLICT", "global.error.conflict"),
     RESOURCE_NOT_FOUND(1004, "RESOURCE_NOT_FOUND", "global.error.not.found"),
     SERVICE_UNAVAILABLE(1005, "SERVICE_UNAVAILABLE", "global.error.service.unavailable"),
-    UNEXPECTED_ERROR(1006, "UNEXPECTED_ERROR", "global.error.unexpected");
+    UNEXPECTED_ERROR(1006, "UNEXPECTED_ERROR", "global.error.unexpected"),
+    TESTING_ERROR(1007, "TESTING_ERROR", "global.error.testing");
 
     private final int code;
     private final String value;
